@@ -15,6 +15,11 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0-nanoserver-1809 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["src/InsuranceCalculator.Api/InsuranceCalculator.Api.csproj", "src/InsuranceCalculator.Api/"]
+COPY ["src/core/InsuranceCalculator.Application/InsuranceCalculator.Application.csproj", "src/core/InsuranceCalculator.Application/"]
+COPY ["src/core/InsuranceCalculator.Domain/InsuranceCalculator.Domain.csproj", "src/core/InsuranceCalculator.Domain/"]
+COPY ["src/InsuranceCalculator.Infrastructure/InsuranceCalculator.Infrastructure.csproj", "src/InsuranceCalculator.Infrastructure/"]
+COPY ["src/InsuranceCalculator.Shared/InsuranceCalculator.Shared.csproj", "src/InsuranceCalculator.Shared/"]
+COPY ["src/InsuranceConfiguration.Shared.Abstraction/InsuranceConfiguration.Shared.Abstraction.csproj", "src/InsuranceConfiguration.Shared.Abstraction/"]
 RUN dotnet restore "./src/InsuranceCalculator.Api/InsuranceCalculator.Api.csproj"
 COPY . .
 WORKDIR "/src/src/InsuranceCalculator.Api"

@@ -1,25 +1,52 @@
+using InsuranceCalculator.Api.Configurations;
+using InsuranceCalculator.Api.Extensions;
+
 var builder = WebApplication.CreateBuilder(args);
+#region Application Services Configuration
+// Configure HTTP settings
+builder.Services.ConfigureHttpSettings();
 
-// Add services to the container.
+// Binding AppSettings to the DI container
+builder.Services.ConfigureAppSettings(builder.Configuration);
 
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+// Configure JSON settings
+builder.Services.ConfigureJsonSettings();
+
+// Configures ApiExplorer using
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+
+// Configure Application Services
+// TODO: Add application services here
+
+// Configure Exception Handling Middleware
+builder.Services.ConfigureExceptionHandling();
+
+// Register the Logging services
+builder.Host.ConfigureLogging();
+
+// Register the Swagger services
+builder.Services.ConfigureSwagger();
+#endregion
 
 var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+#region Application Configuration
+app.UseExceptionHandler();
+app.RegisterMiddlewaresInDevelopmentMode(() =>
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+    // TODO: Enable seed data for local testing
 
+
+    // Configure the Swagger middleware
+    app.ConfigureSwaggerUI();
+});
+app.RegisterMiddlewaresInProductionMode(() =>
+{
+    app.UseHsts();
+});
 app.UseHttpsRedirection();
-
+app.UseRouting();
 app.UseAuthorization();
-
 app.MapControllers();
-
+app.ConfigureSeilog();
+#endregion
 app.Run();
