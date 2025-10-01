@@ -1,6 +1,6 @@
 @InsuranceCalculator.Api_HostAddress = http://localhost:5253
 
-GET {{InsuranceCalculator.Api_HostAddress}}/weatherforecast/
+GET {{InsuranceCalculator.Api_HostAddress}}/api/pings/pong
 Accept: application/json
 
 ###

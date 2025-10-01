@@ -41,7 +41,7 @@ bld/
 #wwwroot/
 
 # Application custom logs
-.src/MiniOrderSystem.Presentation/logs/
+.src/InsuranceCalculator.Api/logs/
 
 # Visual Studio 2017 auto generated files
 Generated\ Files/
