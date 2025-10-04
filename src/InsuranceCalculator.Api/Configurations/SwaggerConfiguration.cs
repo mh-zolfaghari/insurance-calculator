@@ -1,4 +1,6 @@
-﻿namespace InsuranceCalculator.Api.Configurations;
+﻿using InsuranceCalculator.Api.Filters;
+
+namespace InsuranceCalculator.Api.Configurations;
 
 public static class SwaggerConfiguration
 {
@@ -18,6 +20,8 @@ public static class SwaggerConfiguration
                     Url = new Uri("https://www.linkedin.com/in/ronixa/")
                 }
             });
+
+            options.OperationFilter<AuthorizeByTokenOperationFilter>();
         });
     }
 

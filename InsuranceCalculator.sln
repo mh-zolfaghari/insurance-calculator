@@ -26,9 +26,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{9F740E77-6B5B-4CD2-A1FC-BD5A7A6B3EC0}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InsuranceConfiguration.Shared.Abstraction", "src\InsuranceConfiguration.Shared.Abstraction\InsuranceConfiguration.Shared.Abstraction.csproj", "{0210F965-83DC-4D7D-B790-2AB630CE34E6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InsuranceCalculator.Shared.Abstraction", "src\InsuranceCalculator.Shared.Abstraction\InsuranceCalculator.Shared.Abstraction.csproj", "{0210F965-83DC-4D7D-B790-2AB630CE34E6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

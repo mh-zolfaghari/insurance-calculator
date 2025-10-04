@@ -1,5 +1,6 @@
-﻿global using Microsoft.AspNetCore.Mvc;
+﻿global using MediatR;
+global using Microsoft.AspNetCore.Mvc;
 global using Microsoft.OpenApi.Models;
 global using Serilog;
-global using System.Text.Json;
+global using Swashbuckle.AspNetCore.SwaggerGen;
 global using System.Text.Json.Serialization;

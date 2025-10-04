@@ -6,8 +6,10 @@ namespace InsuranceCalculator.Api.Controllers.Base
     [ApiController]
     [Route("api/[controller]")]
     [Produces("application/json")]
-    internal abstract class BaseController : Controller
+    public abstract class BaseController(ISender sender) : Controller
     {
+        protected readonly ISender MediatR = sender;
+
         protected IActionResult OkResult<T>(Result<T> response)
             => response.Error.Type == ErrorType.None
                 ? Ok(response)

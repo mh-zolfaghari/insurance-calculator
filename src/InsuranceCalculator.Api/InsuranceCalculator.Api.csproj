@@ -28,6 +28,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\core\InsuranceCalculator.Application\InsuranceCalculator.Application.csproj" />
+    <ProjectReference Include="..\InsuranceCalculator.Infrastructure\InsuranceCalculator.Infrastructure.csproj" />
     <ProjectReference Include="..\InsuranceCalculator.Shared\InsuranceCalculator.Shared.csproj" />
   </ItemGroup>
 

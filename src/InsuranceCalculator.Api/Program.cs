@@ -1,5 +1,8 @@
 using InsuranceCalculator.Api.Configurations;
 using InsuranceCalculator.Api.Extensions;
+using InsuranceCalculator.Application;
+using InsuranceCalculator.Domain;
+using InsuranceCalculator.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 #region Application Services Configuration
@@ -8,6 +11,12 @@ builder.Services.ConfigureHttpSettings();
 
 // Binding AppSettings to the DI container
 builder.Services.ConfigureAppSettings(builder.Configuration);
+
+// Register Infrastructure Services
+builder.Services
+    .RegisterApplicationServices(builder.Configuration)
+    .RegisterDomainServices()
+    .RegisterInfrastructureServices(builder.Configuration);
 
 // Configure JSON settings
 builder.Services.ConfigureJsonSettings();
@@ -31,18 +40,20 @@ builder.Services.ConfigureSwagger();
 var app = builder.Build();
 #region Application Configuration
 app.UseExceptionHandler();
-app.RegisterMiddlewaresInDevelopmentMode(() =>
+
+app.RegisterMiddlewaresInDevelopmentMode(async () =>
 {
-    // TODO: Enable seed data for local testing
-
-
-    // Configure the Swagger middleware
-    app.ConfigureSwaggerUI();
+    // Initialize and seed the database
+    await app.InitializeDatabaseAsync();
 });
+
 app.RegisterMiddlewaresInProductionMode(() =>
 {
     app.UseHsts();
 });
+
+// Configure the Swagger middleware
+app.ConfigureSwaggerUI();
 app.UseHttpsRedirection();
 app.UseRouting();
 app.UseAuthorization();
